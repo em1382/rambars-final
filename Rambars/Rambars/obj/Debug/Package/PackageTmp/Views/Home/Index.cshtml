@@ -1,0 +1,20 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/app")
+}
+
+<div class="page-header">
+    <h1>Rambars 🍺</h1>
+</div>
+
+<h2 class="special-header">Current Specials</h2>
+<div ng-controller="BarsController">
+    <div class="special-div" data-ng-repeat="bar in bars" ng-if="bar.Specials.length">
+        <a href="/bars/details/{{bar.Id}}"><h4><i>{{bar.Name}}</i></h4></a>
+        <div data-ng-repeat="special in bar.Specials">
+            <h4>{{special.Name}} <span class="special-price">${{special.Price}}</span></h4>
+            <p>Start: {{special.StartTime | date:'MM/dd/yyyy HH:mm:ss'}}</p>
+            <p>End: {{special.EndTime | date:'MM/dd/yyyy HH:mm:ss'}}</p>
+            <p>{{special.Description}}</p>
+        </div>
+    </div>
+</div>
